@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import "./App.scss";
+import './styles/global.scss'
 import Login from "./pages/Login";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Contact from "./pages/Contact";
@@ -16,6 +17,9 @@ import Loading from "./components/Loading";
 import NoFound from "./pages/NotFound";
 import Admin from "./pages/admin";
 import ProtectedRoute from "./components/ProtectedRoute";
+import LayoutAdmin from "./components/AdminLayout";
+import UserTable from "./components/AdminLayout/User/UserTable";
+import ListBook from "./components/AdminLayout/Book/ListBook";
 
 const Layout = () => {
   return (
@@ -29,9 +33,13 @@ const Layout = () => {
 
 export default function App() {
   const dispatch = useDispatch();
-  const isAuthenticated = useSelector((state) => state.account.isAuthenticated);
+  const isLoading = useSelector((state) => state.account.isLoading);
   const getAccount = async () => {
-    if (window.location.pathname === "/login") return;
+    if (
+      window.location.pathname === "/login" ||
+      window.location.pathname === "/register"
+    )
+      return;
     const res = await callFetchAccount();
     if (res.data) {
       dispatch(doGetAccountAction(res.data));
@@ -53,14 +61,14 @@ export default function App() {
           element: <Contact />,
         },
         {
-          path: "book",
+          path: "book/:slug",
           element: <Book />,
         },
       ],
     },
     {
       path: "/admin",
-      element: <Layout />,
+      element: <LayoutAdmin />,
       errorElement: <NoFound />,
       children: [
         {
@@ -72,12 +80,12 @@ export default function App() {
           ),
         },
         {
-          path: "user",
-          element: <Contact />,
+          path: "/admin/user",
+          element: <UserTable />,
         },
         {
-          path: "book",
-          element: <Book />,
+          path: "/admin/book",
+          element: <ListBook />,
         },
       ],
     },
@@ -93,7 +101,10 @@ export default function App() {
 
   return (
     <div>
-      {isAuthenticated === true || window.location.pathname === "/login" || window.location.pathname === "/admin" ? (
+      {isLoading === false ||
+      window.location.pathname === "/login" ||
+      window.location.pathname === "/register" ||
+      window.location.pathname === "/" ? (
         <RouterProvider router={router} />
       ) : (
         <Loading />

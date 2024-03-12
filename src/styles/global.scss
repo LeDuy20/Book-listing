@@ -1,0 +1,15 @@
+.carts-pop-button {
+  display: flex;
+  justify-content: flex-end;
+  
+
+  button {
+    background: #ee4d2d;
+    border: none;
+    color: #fff;
+    padding: 12px 10px;
+    font-size: 14px;
+    border-radius: 7px;
+    cursor: pointer;
+  }
+}

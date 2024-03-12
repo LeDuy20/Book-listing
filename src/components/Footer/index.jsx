@@ -1,6 +1,6 @@
 const Footer = () => {
   return (
-    <h1>FOOTER</h1>
+    <div style={{ textAlign: 'center', padding: '50px' }}>Ant Design ©{new Date().getFullYear()} Created by Ant UED</div>
   )
 }
 
