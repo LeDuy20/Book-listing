@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import "./App.scss";
-import './styles/global.scss'
+import "./styles/global.scss";
 import Login from "./pages/Login";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Contact from "./pages/Contact";
+import Carts from "./pages/Carts";
 import Book from "./pages/Book";
 import Header from "./components/Header";
 import { Outlet } from "react-router-dom";
@@ -16,6 +16,7 @@ import { doGetAccountAction } from "./redux/account/accountSlice";
 import Loading from "./components/Loading";
 import NoFound from "./pages/NotFound";
 import Admin from "./pages/admin";
+import History from "./pages/History/History";
 import ProtectedRoute from "./components/ProtectedRoute";
 import LayoutAdmin from "./components/AdminLayout";
 import UserTable from "./components/AdminLayout/User/UserTable";
@@ -57,12 +58,24 @@ export default function App() {
       children: [
         { index: true, element: <Home /> },
         {
-          path: "contact",
-          element: <Contact />,
+          path: "cart",
+          element: (
+            <ProtectedRoute>
+              <Carts />
+            </ProtectedRoute>
+          ),
         },
         {
           path: "book/:slug",
           element: <Book />,
+        },
+        {
+          path: "history",
+          element: (
+            <ProtectedRoute>
+              <History />
+            </ProtectedRoute>
+          ),
         },
       ],
     },

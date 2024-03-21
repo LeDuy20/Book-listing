@@ -1,18 +1,20 @@
 import React, { useState } from "react";
+import "./header.scss";
 import { FaReact } from "react-icons/fa";
 import { FiShoppingCart } from "react-icons/fi";
 import { VscSearchFuzzy } from "react-icons/vsc";
-import { Divider, Badge, Drawer, message, Avatar } from "antd";
+import { Divider, Badge, Drawer, message, Avatar, Modal } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { DownOutlined } from "@ant-design/icons";
 import { Dropdown, Space, Popover } from "antd";
 import { useNavigate } from "react-router";
 import { callLogout } from "../../utils/UserServices";
-import "./header.scss";
 import { doLogoutAction } from "../../redux/account/accountSlice";
+import InfoUser from "../InfoUser/InfoUser";
 
 const Header = () => {
   const [openDrawer, setOpenDrawer] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const isAuthenticated = useSelector((state) => state.account.isAuthenticated);
   const user = useSelector((state) => state.account.user);
   const navigate = useNavigate();
@@ -24,18 +26,44 @@ const Header = () => {
     if (res && res.data) {
       dispatch(doLogoutAction());
       message.success("Đăng xuất thành công");
-      navigate("/");
+      navigate("/login");
     }
   };
 
   const items = [
     {
-      label: <label style={{ cursor: "pointer" }}>Quản lý tài khoản</label>,
+      label: (
+        <div>
+          <label
+            style={{ cursor: "pointer" }}
+            onClick={() => setShowModal(true)}
+          >
+            Quản lý tài khoản
+          </label>
+          <InfoUser setShowModal={setShowModal} showModal={showModal} />
+        </div>
+      ),
       key: "account",
     },
     {
       label: (
-        <label style={{ cursor: "pointer" }} onClick={() => handleLogout()}>
+        <label
+          style={{ cursor: "pointer" }}
+          onClick={() => navigate("/history")}
+        >
+          Lịch sử mua hàng
+        </label>
+      ),
+      key: "history",
+    },
+    {
+      label: (
+        <label
+          style={{ cursor: "pointer" }}
+          onClick={() => {
+            handleLogout();
+          }}
+        >
           Đăng xuất
         </label>
       ),
@@ -82,9 +110,13 @@ const Header = () => {
           </div>
         );
       })}
-      <div className="carts-pop-button">
-        <button >Xem giỏ hàng</button>
-      </div>
+      {carts.length > 0 ? (
+        <div className="carts-pop-button">
+          <button onClick={() => navigate("/cart")}>Xem giỏ hàng</button>
+        </div>
+      ) : (
+        <p>Không có sản phẩm nào trong giỏ hàng</p>
+      )}
     </div>
   );
   return (
@@ -115,8 +147,18 @@ const Header = () => {
           <nav className="page-header__bottom">
             <ul id="navigation" className="navigation">
               <li className="navigation__item">
-                <Popover placement="topRight" title={text} content={content} arrow={true} >
-                  <Badge count={carts?.length ?? 0} size={"small"} showZero>
+                <Popover
+                  placement="topRight"
+                  title={text}
+                  content={content}
+                  arrow={true}
+                >
+                  <Badge
+                    count={carts?.length ?? 0}
+                    size={"small"}
+                    showZero
+                    onClick={() => navigate("/cart")}
+                  >
                     <FiShoppingCart className="icon-cart" />
                   </Badge>
                 </Popover>

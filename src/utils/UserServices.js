@@ -107,6 +107,31 @@ const callDeleteBook = (bookId) => {
 const callFetchBookById = (id) => {
   return axios.get(`api/v1/book/${id}`);
 };
+
+const callUserCarts = (data) => {
+  return axios.post("api/v1/order", { ...data });
+};
+
+const callHistory = () => {
+  return axios.get("api/v1/history");
+};
+const callUploadAvatar = (fileImg) => {
+  const bodyFormData = new FormData();
+  bodyFormData.append("fileImg", fileImg);
+  return axios({
+    method: "post",
+    url: "/api/v1/file/upload",
+    data: bodyFormData,
+    headers: {
+      "Content-Type": "multipart/form-data",
+      "upload-type": "avatar",
+    },
+  });
+};
+
+const callUploadUser = (_id, fullName, phone, avatar) => {
+  return axios.put("api/v1/user", { _id, fullName, phone, avatar });
+};
 export {
   createUserRegister,
   loginUser,
@@ -124,4 +149,8 @@ export {
   callUpdateBook,
   callDeleteBook,
   callFetchBookById,
+  callUserCarts,
+  callHistory,
+  callUploadAvatar,
+  callUploadUser,
 };
