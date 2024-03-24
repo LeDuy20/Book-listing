@@ -129,8 +129,8 @@ const callUploadAvatar = (fileImg) => {
   });
 };
 
-const callUploadUser = (_id, fullName, phone, avatar) => {
-  return axios.put("api/v1/user", { _id, fullName, phone, avatar });
+const callUploadUser = ( _id, fullName, phone, avatar ) => {
+  return axios.put(`/api/v1/user`, { _id, fullName, phone, avatar });
 };
 export {
   createUserRegister,

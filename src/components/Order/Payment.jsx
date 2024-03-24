@@ -25,6 +25,7 @@ const Payment = (props) => {
   const [form] = Form.useForm();
   const carts = useSelector((state) => state.order.carts);
   const user = useSelector((state) => state.account.user);
+  console.log(user)
   const [totalPrice, setTotalPrice] = useState(0);
   const [value, setValue] = useState(1);
   const [isSubmit, setIsSubmit] = useState(false);
@@ -169,7 +170,20 @@ const Payment = (props) => {
             >
               <Input />
             </Form.Item>
-
+            <Form.Item
+              labelCol={{ span: 24 }} //whole column
+              label="Id"
+              name="id"
+              initialValue={user?.id}
+              rules={[
+                {
+                  required: true,
+                  message: "Số điện thoại không được để trống!",
+                },
+              ]}
+            >
+              <Input />
+            </Form.Item>
             <Form.Item
               labelCol={{ span: 24 }} //whole column
               label="Số điện thoại"

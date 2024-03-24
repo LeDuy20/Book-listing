@@ -9,7 +9,7 @@ const initialState = {
     fullName: "",
     role: "",
     avatar: "",
-    id: "",
+    _id: "",
   },
 };
 
@@ -49,13 +49,14 @@ export const accountSlice = createSlice({
         fullName: "",
         role: "",
         avatar: "",
-        id: "",
+        _id: "",
       };
     },
     doUpdateUserInfoAction: (state, action) => {
       state.user.avatar = action.payload.avatar;
       state.user.phone = action.payload.phone;
       state.user.fullName = action.payload.fullName;
+      state.user._id = action.payload.id
     },
     doUploadAvatarAction: (state, action) => {
       state.tempAvatar = action.payload.avatar;

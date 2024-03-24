@@ -21,6 +21,7 @@ import {
 const ChangeInfoUser = () => {
   const [form] = Form.useForm();
   const user = useSelector((state) => state.account.user);
+  console.log(user)
   const [isSubmit, setIsSubmit] = useState(false);
 
   const dispatch = useDispatch();
@@ -64,14 +65,15 @@ const ChangeInfoUser = () => {
 
   //onFinish form
   const onFinish = async (values) => {
-    const { _id, fullName, phone } = values;
 
+    const { _id, fullName, phone} = values;
     setIsSubmit(true);
 
-    const res = await callUploadUser(_id, fullName, phone, userAvatar);
+    const res = await callUploadUser(_id , fullName, phone, userAvatar);
+
     if (res && res.data) {
       //update redux
-      dispatch(doUpdateUserInfoAction({ avatar: userAvatar, phone, fullName }));
+      dispatch(doUpdateUserInfoAction({ avatar: userAvatar, phone, fullName, _id }));
       message.success("Cập nhập người dùng thành công !!");
 
       //force renew token
@@ -110,7 +112,7 @@ const ChangeInfoUser = () => {
         </Col>
         <Col sm={24} md={12}>
           <Form name="basic" onFinish={onFinish} autoComplete="off" form={form}>
-            <Form.Item label="ID" name="id">
+            <Form.Item labelCol={{ span: 24 }} label="Id" name="_id" >
               <Input />
             </Form.Item>
             <Form.Item
@@ -128,7 +130,7 @@ const ChangeInfoUser = () => {
               name="email"
               rules={[{ required: true, message: "Please input your Email!" }]}
             >
-              <Input disabled />
+              <Input />
             </Form.Item>
             <Form.Item
               labelCol={{ span: 24 }}

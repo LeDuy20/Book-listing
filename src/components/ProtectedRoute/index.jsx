@@ -8,8 +8,7 @@ const RoleBaseRoute = (props) => {
   const userRole = user.role;
 
   if (
-    (isAdminRoute && userRole === "ADMIN") ||
-    (!isAdminRoute && userRole === "USER" && userRole === "ADMIN")
+    (isAdminRoute && userRole === "ADMIN")
   ) {
     return <>{props.children}</>;
   } else {

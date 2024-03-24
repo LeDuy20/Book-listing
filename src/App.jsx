@@ -59,11 +59,7 @@ export default function App() {
         { index: true, element: <Home /> },
         {
           path: "cart",
-          element: (
-            <ProtectedRoute>
-              <Carts />
-            </ProtectedRoute>
-          ),
+          element: <Carts />,
         },
         {
           path: "book/:slug",
@@ -71,11 +67,7 @@ export default function App() {
         },
         {
           path: "history",
-          element: (
-            <ProtectedRoute>
-              <History />
-            </ProtectedRoute>
-          ),
+          element: <History />,
         },
       ],
     },
