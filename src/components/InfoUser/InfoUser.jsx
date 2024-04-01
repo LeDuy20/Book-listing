@@ -15,7 +15,7 @@ const InfoUser = (props) => {
     {
       key: "2",
       label: "Thay đổi mật khẩu",
-      children: <ChangePassword />,
+      children: <ChangePassword setShowModal={setShowModal}/>,
     },
   ];
 

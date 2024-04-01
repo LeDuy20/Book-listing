@@ -35,6 +35,7 @@ export const accountSlice = createSlice({
       state.isAuthenticated = true;
       state.isLoading = false;
       state.user = action.payload.user;
+      state.user._id = action.payload.user.id
     },
     doLogoutAction: (state, action) => {
       // Redux Toolkit allows us to write "mutating" logic in reducers. It
@@ -56,7 +57,7 @@ export const accountSlice = createSlice({
       state.user.avatar = action.payload.avatar;
       state.user.phone = action.payload.phone;
       state.user.fullName = action.payload.fullName;
-      state.user._id = action.payload.id
+      state.user._id = action.payload._id
     },
     doUploadAvatarAction: (state, action) => {
       state.tempAvatar = action.payload.avatar;

@@ -250,7 +250,7 @@ const UserTable = () => {
           dataSource={listUser}
           onChange={onChange}
           rowKey="_id"
-          loading={setLoading}
+          loading={loading}
           pagination={{
             current: current,
             pageSize: pageSize,

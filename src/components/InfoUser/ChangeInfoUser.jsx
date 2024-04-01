@@ -21,7 +21,6 @@ import {
 const ChangeInfoUser = () => {
   const [form] = Form.useForm();
   const user = useSelector((state) => state.account.user);
-  console.log(user)
   const [isSubmit, setIsSubmit] = useState(false);
 
   const dispatch = useDispatch();
@@ -66,7 +65,8 @@ const ChangeInfoUser = () => {
   //onFinish form
   const onFinish = async (values) => {
 
-    const { _id, fullName, phone} = values;
+    const { _id , fullName, phone} = values;
+    console.log(values)
     setIsSubmit(true);
 
     const res = await callUploadUser(_id , fullName, phone, userAvatar);

@@ -21,6 +21,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import LayoutAdmin from "./components/AdminLayout";
 import UserTable from "./components/AdminLayout/User/UserTable";
 import ListBook from "./components/AdminLayout/Book/ListBook";
+import ManageOder from "./components/AdminLayout/User/ManageOder";
 
 const Layout = () => {
   return (
@@ -91,6 +92,10 @@ export default function App() {
         {
           path: "/admin/book",
           element: <ListBook />,
+        },
+        {
+          path: "/admin/oder",
+          element: <ManageOder />,
         },
       ],
     },

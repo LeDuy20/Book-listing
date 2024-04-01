@@ -19,6 +19,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { doLogoutAction } from "../../redux/account/accountSlice";
 import UserTable from "./User/UserTable";
 import ListBook from "./Book/ListBook";
+import ManageOder from "./User/ManageOder";
+import Dashboard from "./User/Dashboard";
 
 const { Content, Footer, Sider } = Layout;
 
@@ -27,10 +29,11 @@ const items = [
     label: <Link to="/admin">Dashboard</Link>,
     key: "dashboard",
     icon: <AppstoreOutlined />,
+    element: <Dashboard />,
   },
   {
     label: <span>Manage Users</span>,
-    key: 'user',
+    key: "user",
     icon: <UserOutlined />,
     children: [
       {
@@ -39,23 +42,19 @@ const items = [
         icon: <TeamOutlined />,
         element: <UserTable />,
       },
-      {
-        label: "Files1",
-        key: "file1",
-        icon: <TeamOutlined />,
-      },
     ],
   },
   {
     label: <Link to="/admin/book">Manage Books</Link>,
     key: "book",
     icon: <ExceptionOutlined />,
-    element: <ListBook/>
+    element: <ListBook />,
   },
   {
     label: <Link to="/admin/order">Manage Orders</Link>,
     key: "order",
     icon: <DollarCircleOutlined />,
+    element: <ManageOder />,
   },
 ];
 
@@ -94,7 +93,9 @@ const LayoutAdmin = () => {
       key: "logout",
     },
   ];
-  const urlAvatar = `${import.meta.env.VITE_BACKEND_URL}/images/avatar/${user?.avatar}`
+  const urlAvatar = `${import.meta.env.VITE_BACKEND_URL}/images/avatar/${
+    user?.avatar
+  }`;
   return (
     <Layout style={{ minHeight: "100vh" }} className="layout-admin">
       <Sider
@@ -103,7 +104,9 @@ const LayoutAdmin = () => {
         collapsed={collapsed}
         onCollapse={(value) => setCollapsed(value)}
       >
-        <div style={{ height: 32, margin: 16, textAlign: "center" }}>Admin</div>
+        <div style={{ height: 32, margin: 16, textAlign: "center" }}>
+          <Dashboard />
+        </div>
         <Menu
           defaultSelectedKeys={[activeMenu]}
           mode="inline"
@@ -124,7 +127,7 @@ const LayoutAdmin = () => {
           </span>
           <Dropdown menu={{ items: itemsDropdown }} trigger={["click"]}>
             <a onClick={(e) => e.preventDefault()}>
-              <Space style={{color: '#000', fontWeight: '600'}}>
+              <Space style={{ color: "#000", fontWeight: "600" }}>
                 <span>
                   <img
                     style={{ width: "30px", height: "30px" }}

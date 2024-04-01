@@ -115,6 +115,7 @@ const callUserCarts = (data) => {
 const callHistory = () => {
   return axios.get("api/v1/history");
 };
+// change info user
 const callUploadAvatar = (fileImg) => {
   const bodyFormData = new FormData();
   bodyFormData.append("fileImg", fileImg);
@@ -132,6 +133,9 @@ const callUploadAvatar = (fileImg) => {
 const callUploadUser = ( _id, fullName, phone, avatar ) => {
   return axios.put(`/api/v1/user`, { _id, fullName, phone, avatar });
 };
+const changePassword = (email, oldpass, newpass) => {
+  return axios.post('/api/v1/user/change-password', { email, oldpass, newpass })
+}
 export {
   createUserRegister,
   loginUser,
@@ -153,4 +157,5 @@ export {
   callHistory,
   callUploadAvatar,
   callUploadUser,
+  changePassword
 };
