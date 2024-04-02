@@ -15,13 +15,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { doGetAccountAction } from "./redux/account/accountSlice";
 import Loading from "./components/Loading";
 import NoFound from "./pages/NotFound";
-import Admin from "./pages/admin";
 import History from "./pages/History/History";
 import ProtectedRoute from "./components/ProtectedRoute";
 import LayoutAdmin from "./components/AdminLayout";
 import UserTable from "./components/AdminLayout/User/UserTable";
 import ListBook from "./components/AdminLayout/Book/ListBook";
 import ManageOder from "./components/AdminLayout/User/ManageOder";
+import Dashboard from "./components/AdminLayout/User/Dashboard";
 
 const Layout = () => {
   return (
@@ -81,7 +81,7 @@ export default function App() {
           index: true,
           element: (
             <ProtectedRoute>
-              <Admin />
+              <Dashboard />
             </ProtectedRoute>
           ),
         },
@@ -94,7 +94,7 @@ export default function App() {
           element: <ListBook />,
         },
         {
-          path: "/admin/oder",
+          path: "/admin/order",
           element: <ManageOder />,
         },
       ],

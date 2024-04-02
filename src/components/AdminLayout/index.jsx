@@ -10,7 +10,7 @@ import {
   MenuUnfoldOutlined,
   DownOutlined,
 } from "@ant-design/icons";
-import { Layout, Menu, Dropdown, Space, message } from "antd";
+import { Layout, Menu, Dropdown, Space, message, Card } from "antd";
 import { Outlet, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import "./LayoutAdmin.scss";
@@ -104,9 +104,7 @@ const LayoutAdmin = () => {
         collapsed={collapsed}
         onCollapse={(value) => setCollapsed(value)}
       >
-        <div style={{ height: 32, margin: 16, textAlign: "center" }}>
-          <Dashboard />
-        </div>
+        <div style={{ height: 32, margin: 16, textAlign: "center" }}>Admin</div>
         <Menu
           defaultSelectedKeys={[activeMenu]}
           mode="inline"

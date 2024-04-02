@@ -136,6 +136,9 @@ const callUploadUser = ( _id, fullName, phone, avatar ) => {
 const changePassword = (email, oldpass, newpass) => {
   return axios.post('/api/v1/user/change-password', { email, oldpass, newpass })
 }
+const callListOrder = (query) => {
+  return axios.get(`/api/v1/order?${query}`)
+}
 export {
   createUserRegister,
   loginUser,
@@ -157,5 +160,6 @@ export {
   callHistory,
   callUploadAvatar,
   callUploadUser,
-  changePassword
+  changePassword,
+  callListOrder
 };

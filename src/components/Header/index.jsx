@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./header.scss";
+import "./Header.scss";
 import { FaReact } from "react-icons/fa";
 import { FiShoppingCart } from "react-icons/fi";
 import { VscSearchFuzzy } from "react-icons/vsc";
