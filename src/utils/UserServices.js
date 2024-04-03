@@ -139,6 +139,9 @@ const changePassword = (email, oldpass, newpass) => {
 const callListOrder = (query) => {
   return axios.get(`/api/v1/order?${query}`)
 }
+const callFetchDashboard = () => {
+  return axios.get('api/v1/database/dashboard')
+}
 export {
   createUserRegister,
   loginUser,
@@ -161,5 +164,6 @@ export {
   callUploadAvatar,
   callUploadUser,
   changePassword,
-  callListOrder
+  callListOrder,
+  callFetchDashboard
 };
