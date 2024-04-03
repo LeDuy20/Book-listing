@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import './Header.scss'
+import "./Header.scss";
 import { FaReact } from "react-icons/fa";
 import { FiShoppingCart } from "react-icons/fi";
 import { VscSearchFuzzy } from "react-icons/vsc";
@@ -31,6 +31,14 @@ const Header = () => {
   };
 
   const items = [
+    {
+      label: (
+        <label style={{ cursor: "pointer" }} onClick={() => navigate('/admin')}>
+          Quản trị người dùng
+        </label>
+      ),
+      key: "account",
+    },
     {
       label: (
         <div>
