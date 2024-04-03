@@ -60,15 +60,27 @@ export default function App() {
         { index: true, element: <Home /> },
         {
           path: "cart",
-          element: <Carts />,
+          element: (
+            <ProtectedRoute>
+              <Carts />
+            </ProtectedRoute>
+          ),
         },
         {
           path: "book/:slug",
-          element: <Book />,
+          element: (
+            <ProtectedRoute>
+              <Book />
+            </ProtectedRoute>
+          ),
         },
         {
           path: "history",
-          element: <History />,
+          element: (
+            <ProtectedRoute>
+              <History />
+            </ProtectedRoute>
+          ),
         },
       ],
     },

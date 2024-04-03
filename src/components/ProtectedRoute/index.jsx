@@ -4,11 +4,12 @@ import NotPermitted from "./NoPermitted";
 
 const RoleBaseRoute = (props) => {
   const isAdminRoute = window.location.pathname.startsWith("/admin");
+  const isUserRoute = window.location.pathname.startsWith("/user");
   const user = useSelector((state) => state.account.user);
   const userRole = user.role;
 
   if (
-    (isAdminRoute && userRole === "ADMIN")
+    (isAdminRoute && userRole === "ADMIN") || (isUserRoute && userRole === "USER")
   ) {
     return <>{props.children}</>;
   } else {
