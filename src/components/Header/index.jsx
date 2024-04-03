@@ -37,7 +37,7 @@ const Header = () => {
           Quản trị người dùng
         </label>
       ),
-      key: "account",
+      key: "admin",
     },
     {
       label: (
