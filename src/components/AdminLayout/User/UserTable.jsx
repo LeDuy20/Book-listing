@@ -185,6 +185,7 @@ const UserTable = () => {
 
   //handle search
   const handleSearch = (query) => {
+    setCurrent(1)
     setFilter(query);
   };
   // title table
