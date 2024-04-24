@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import ViewDetail from "../../components/Book/ViewDetail";
-import { callFetchBookById } from "../../utils/UserServices";
+import { callFetchBookById } from "../../services/UserServices";
 
 const index = () => {
   const [dataBook, setDataBook] = useState();
@@ -45,12 +45,8 @@ const index = () => {
     if (raw.slider) {
       raw?.slider.map((item) => {
         images.push({
-          original: `${import.meta.env.VITE_BACKEND_URL}/images/book/${
-            item
-          }`,
-          thumbnail: `${import.meta.env.VITE_BACKEND_URL}/images/book/${
-            item
-          }`,
+          original: `${import.meta.env.VITE_BACKEND_URL}/images/book/${item}`,
+          thumbnail: `${import.meta.env.VITE_BACKEND_URL}/images/book/${item}`,
           originalClass: "original-image",
           thumbnailClass: "thumbnail-image",
         });

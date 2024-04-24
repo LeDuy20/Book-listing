@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Table, Button,Popconfirm, message, notification } from "antd";
+import { Table, Button, Popconfirm, message, notification } from "antd";
 import { MdOutlineDelete } from "react-icons/md";
 import { FaPencilAlt } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa6";
 import { PiExport } from "react-icons/pi";
 import { IoReload } from "react-icons/io5";
-import { callDeleteBook, fetchBook } from "../../../utils/UserServices";
+import { callDeleteBook, fetchBook } from "../../../services/UserServices";
 import SearchBook from "./SearchBook";
 import moment from "moment";
 import BookViewDetail from "./BookViewDetail";
@@ -37,17 +37,17 @@ const ListBook = () => {
 
   // handle delete book
   const handleDeleteBook = async (bookId) => {
-    const res = await callDeleteBook(bookId)
-    if(res && res.data) {
-      message.success('Xóa book thành công !!!')
-      fetchListBook()
+    const res = await callDeleteBook(bookId);
+    if (res && res.data) {
+      message.success("Xóa book thành công !!!");
+      fetchListBook();
     } else {
       notification.error({
         description: res.message,
-        message:  'Đã có lỗi xảy ra!!'
-      })
+        message: "Đã có lỗi xảy ra!!",
+      });
     }
-  }
+  };
 
   const columns = [
     {
@@ -110,24 +110,24 @@ const ListBook = () => {
       render: (text, record, index) => {
         return (
           <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
-            <Popconfirm 
+            <Popconfirm
               placement="rightTop"
               trigger="click"
-              title='Xác nhận xóa user'
-              description='Bạn có chắc muốn xóa user này ?'
-              okText='Xác nhận'
-              okCancel='Hủy'
-              onConfirm = {() =>handleDeleteBook(record._id)}
-              >
-                <MdOutlineDelete
-                  style={{
-                    width: "20px",
-                    height: "20px",
-                    color: "#fd4343",
-                    cursor: "pointer",
-                  }}
-                />
-              </Popconfirm>
+              title="Xác nhận xóa user"
+              description="Bạn có chắc muốn xóa user này ?"
+              okText="Xác nhận"
+              okCancel="Hủy"
+              onConfirm={() => handleDeleteBook(record._id)}
+            >
+              <MdOutlineDelete
+                style={{
+                  width: "20px",
+                  height: "20px",
+                  color: "#fd4343",
+                  cursor: "pointer",
+                }}
+              />
+            </Popconfirm>
             <FaPencilAlt
               style={{
                 width: "16px",

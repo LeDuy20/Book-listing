@@ -1,4 +1,4 @@
-import axios from "../services/customer-axios";
+import axios from "../utils/customer-axios";
 
 const createUserRegister = (fullName, email, password, phone) => {
   return axios.post("/api/v1/user/register", {

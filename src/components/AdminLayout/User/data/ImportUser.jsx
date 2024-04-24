@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { Modal, Upload, Table, message, notification } from "antd";
 import { InboxOutlined } from "@ant-design/icons";
 import * as XLSX from "xlsx";
-import { callBulkCreateUser } from "../../../../utils/UserServices";
-import templateFile from './template.xlsx?url'
+import { callBulkCreateUser } from "../../../../services/UserServices";
+import templateFile from "./template.xlsx?url";
 
 const { Dragger } = Upload;
 
@@ -113,7 +113,14 @@ const UploadUser = (props) => {
           </p>
           <p className="ant-upload-hint">
             Support for a single or bulk upload. Only accept .csv, .xls, .xlsx
-            or <a onClick={(e) => e.stopPropagation()} href={templateFile} download>Download Sample File</a>
+            or{" "}
+            <a
+              onClick={(e) => e.stopPropagation()}
+              href={templateFile}
+              download
+            >
+              Download Sample File
+            </a>
           </p>
         </Dragger>
         <Table

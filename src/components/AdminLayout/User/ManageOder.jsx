@@ -1,6 +1,6 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Table, message, notification } from "antd";
-import { callListOrder } from "../../../utils/UserServices";
+import { callListOrder } from "../../../services/UserServices";
 import moment from "moment";
 
 const ManageOder = () => {
@@ -11,13 +11,12 @@ const ManageOder = () => {
 
   const [loading, setLoading] = useState(false);
 
-
   //Sort
   const [sortQuery, setSortQuery] = useState("");
 
   useEffect(() => {
-    fetchUserOrder()
-  }, [current,pageSize,total])
+    fetchUserOrder();
+  }, [current, pageSize, total]);
 
   const fetchUserOrder = async () => {
     setLoading(true);

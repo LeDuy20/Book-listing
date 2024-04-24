@@ -12,7 +12,7 @@ import {
   notification,
 } from "antd";
 import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
-import { callCategory, callUpdateBook } from "../../../utils/UserServices";
+import { callCategory, callUpdateBook } from "../../../services/UserServices";
 import { v4 as uuidv4 } from "uuid";
 
 const UpdateBook = (props) => {

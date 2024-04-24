@@ -11,10 +11,10 @@ import {
   notification,
 } from "antd";
 import { useSelector } from "react-redux";
-import { changePassword } from '../../utils/UserServices'
+import { changePassword } from "../../services/UserServices";
 
 const ChangePassword = (props) => {
-  const { setShowModal} = props
+  const { setShowModal } = props;
   const [form] = Form.useForm();
 
   const onFinish = async (values) => {
@@ -25,7 +25,7 @@ const ChangePassword = (props) => {
       message.success("Cập nhật mật khẩu thành công !!");
       form.setFieldValue("oldpass", "");
       form.setFieldValue("newpass", "");
-      setShowModal(false)
+      setShowModal(false);
     } else {
       notification.error({
         message: "Đã có lỗi xảy ra !",
@@ -53,7 +53,9 @@ const ChangePassword = (props) => {
             labelCol={{ span: 24 }}
             label="Old Password"
             name="oldpass"
-            rules={[{ required: true, message: "Please input your old password!" }]}
+            rules={[
+              { required: true, message: "Please input your old password!" },
+            ]}
           >
             <Input />
           </Form.Item>
@@ -62,7 +64,9 @@ const ChangePassword = (props) => {
             labelCol={{ span: 24 }}
             label="New Password"
             name="newpass"
-            rules={[{ required: true, message: "Please input your new password!" }]}
+            rules={[
+              { required: true, message: "Please input your new password!" },
+            ]}
           >
             <Input />
           </Form.Item>

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Form, Input, Modal, message, notification } from "antd";
-import { callUpdateUser } from "../../../utils/UserServices";
+import { callUpdateUser } from "../../../services/UserServices";
 const UpdateUser = (props) => {
   const [form] = Form.useForm();
 
-  const { showModalUpdate, setShowModalUpdate, dataUpdate, setDataUpdate} = props;
+  const { showModalUpdate, setShowModalUpdate, dataUpdate, setDataUpdate } =
+    props;
 
   const [isSubmit, setIsSubmit] = useState(false);
   const onFinish = async (values) => {

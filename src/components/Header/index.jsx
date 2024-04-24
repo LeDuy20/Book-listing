@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { DownOutlined } from "@ant-design/icons";
 import { Dropdown, Space, Popover } from "antd";
 import { useNavigate } from "react-router";
-import { callLogout } from "../../utils/UserServices";
+import { callLogout } from "../../services/UserServices";
 import { doLogoutAction } from "../../redux/account/accountSlice";
 import InfoUser from "../InfoUser/InfoUser";
 
@@ -33,7 +33,7 @@ const Header = () => {
   const items = [
     {
       label: (
-        <label style={{ cursor: "pointer" }} onClick={() => navigate('/admin')}>
+        <label style={{ cursor: "pointer" }} onClick={() => navigate("/admin")}>
           Quản trị người dùng
         </label>
       ),

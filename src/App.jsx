@@ -10,7 +10,7 @@ import { Outlet } from "react-router-dom";
 import Footer from "./components/Footer";
 import Home from "./components/Home";
 import Register from "./pages/Register";
-import { callFetchAccount } from "./utils/UserServices";
+import { callFetchAccount } from "./services/UserServices";
 import { useDispatch, useSelector } from "react-redux";
 import { doGetAccountAction } from "./redux/account/accountSlice";
 import Loading from "./components/Loading";

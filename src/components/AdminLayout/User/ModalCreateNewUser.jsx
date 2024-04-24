@@ -1,35 +1,33 @@
 import React, { useState } from "react";
 import { Form, Input, Modal, message, notification } from "antd";
-import { createNewUser } from "../../../utils/UserServices";
-
+import { createNewUser } from "../../../services/UserServices";
 
 const ModalCreateNewUser = (props) => {
   const [form] = Form.useForm();
 
-  const [isSubmit, setIsSubmit] = useState(false)
+  const [isSubmit, setIsSubmit] = useState(false);
   const { openModalCreateNewUser, setOpenModalCreateNewUser } = props;
 
   const onFinish = async (values) => {
-    const {fullName, password, phone, email} = values
-    
-    setIsSubmit(true)
-    const res = await createNewUser(fullName, password, phone, email)
-    if( res && res.data) {
-      message.success('Tạo mới người dùng thành công');
+    const { fullName, password, phone, email } = values;
+
+    setIsSubmit(true);
+    const res = await createNewUser(fullName, password, phone, email);
+    if (res && res.data) {
+      message.success("Tạo mới người dùng thành công");
       form.resetFields();
-      setOpenModalCreateNewUser(false)
-      await props.fetchUserList()
+      setOpenModalCreateNewUser(false);
+      await props.fetchUserList();
     } else {
       notification.error({
-        description: res.message
-      }
-        )
+        description: res.message,
+      });
     }
-    setIsSubmit(false)
+    setIsSubmit(false);
   };
   return (
     <Modal
-      title='Thêm mới người dùng'
+      title="Thêm mới người dùng"
       open={openModalCreateNewUser}
       cancelText={"Hủy"}
       okText={"Xác nhận"}
@@ -62,7 +60,7 @@ const ModalCreateNewUser = (props) => {
           name="password"
           rules={[{ required: true, message: "Mật khẩu không được để trống!" }]}
         >
-          <Input/>
+          <Input />
         </Form.Item>
         <Form.Item
           labelCol={{ span: 24 }} //whole column

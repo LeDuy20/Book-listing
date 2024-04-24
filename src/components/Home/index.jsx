@@ -14,7 +14,7 @@ import {
 } from "antd";
 import "./home.scss";
 import { useEffect, useState } from "react";
-import { callCategory, fetchBook } from "../../utils/UserServices";
+import { callCategory, fetchBook } from "../../services/UserServices";
 import { useNavigate } from "react-router-dom";
 const Home = () => {
   const [form] = Form.useForm();

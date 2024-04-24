@@ -14,7 +14,7 @@ import { Layout, Menu, Dropdown, Space, message, Card } from "antd";
 import { Outlet, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import "./LayoutAdmin.scss";
-import { callLogout } from "../../utils/UserServices";
+import { callLogout } from "../../services/UserServices";
 import { useDispatch, useSelector } from "react-redux";
 import { doLogoutAction } from "../../redux/account/accountSlice";
 import UserTable from "./User/UserTable";

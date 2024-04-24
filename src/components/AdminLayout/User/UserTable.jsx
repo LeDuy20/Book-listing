@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Table, Button, Popconfirm, message, notification } from "antd";
-import { callDeteleUser, fetchUser } from "../../../utils/UserServices";
+import { callDeteleUser, fetchUser } from "../../../services/UserServices";
 import { MdDeleteOutline } from "react-icons/md";
 import { PiExport } from "react-icons/pi";
 import { BiImport } from "react-icons/bi";
@@ -44,11 +44,10 @@ const UserTable = () => {
   const [showModalUpdate, setShowModalUpdate] = useState(false);
   const [dataUpdate, setDataUpdate] = useState("");
 
-  
   useEffect(() => {
     fetchUserList();
   }, [current, pageSize, filter, sortQuery]);
-  
+
   // Fetch user
   const fetchUserList = async () => {
     setLoading(true);
@@ -67,20 +66,19 @@ const UserTable = () => {
     setLoading(false);
   };
 
-
   //handle delete user
   const handleDeleteUser = async (userId) => {
-    const res = await callDeteleUser(userId)
-    if(res && res.data) {
-      message.success('Xóa user thành công !!')
-      fetchUserList()
-    }else {
+    const res = await callDeteleUser(userId);
+    if (res && res.data) {
+      message.success("Xóa user thành công !!");
+      fetchUserList();
+    } else {
       notification.error({
         description: res.message,
-        message:  'Đã có lỗi xảy ra!!'
-      })
+        message: "Đã có lỗi xảy ra!!",
+      });
     }
-  }
+  };
   //columns
   const columns = [
     {
@@ -129,14 +127,14 @@ const UserTable = () => {
         return (
           <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
             <>
-            <Popconfirm 
-              placement="rightTop"
-              trigger="click"
-              title='Xác nhận xóa user'
-              description='Bạn có chắc muốn xóa user này ?'
-              okText='Xác nhận'
-              okCancel='Hủy'
-              onConfirm = {() =>handleDeleteUser(record._id)}
+              <Popconfirm
+                placement="rightTop"
+                trigger="click"
+                title="Xác nhận xóa user"
+                description="Bạn có chắc muốn xóa user này ?"
+                okText="Xác nhận"
+                okCancel="Hủy"
+                onConfirm={() => handleDeleteUser(record._id)}
               >
                 <MdDeleteOutline
                   style={{
@@ -185,7 +183,7 @@ const UserTable = () => {
 
   //handle search
   const handleSearch = (query) => {
-    setCurrent(1)
+    setCurrent(1);
     setFilter(query);
   };
   // title table

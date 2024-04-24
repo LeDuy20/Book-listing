@@ -17,7 +17,7 @@ import {
   doDeteleCartAction,
   doDeleteCartsAfterOrder,
 } from "../../redux/order/orderSlice";
-import { callUserCarts } from "../../utils/UserServices";
+import { callUserCarts } from "../../services/UserServices";
 
 const { TextArea } = Input;
 
@@ -25,7 +25,7 @@ const Payment = (props) => {
   const [form] = Form.useForm();
   const carts = useSelector((state) => state.order.carts);
   const user = useSelector((state) => state.account.user);
-  console.log(user)
+  console.log(user);
   const [totalPrice, setTotalPrice] = useState(0);
   const [value, setValue] = useState(1);
   const [isSubmit, setIsSubmit] = useState(false);

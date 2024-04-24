@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Table, Tag, message } from "antd";
-import { callHistory } from "../../utils/UserServices";
+import { callHistory } from "../../services/UserServices";
 import ReactJson from "react-json-view";
 import moment from "moment";
 
