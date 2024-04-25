@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.scss";
 import "./styles/global.scss";
 import Login from "./pages/Login";
@@ -23,11 +23,14 @@ import ListBook from "./components/AdminLayout/Book/ListBook";
 import ManageOder from "./components/AdminLayout/User/ManageOder";
 import Dashboard from "./components/AdminLayout/User/Dashboard";
 
+
 const Layout = () => {
+  //search
+  const [search , setSearch] = useState("")
   return (
     <div className="layout-app">
-      <Header />
-      <Outlet />
+      <Header search={search} setSearch={setSearch}/>
+      <Outlet context={[search, setSearch]}/>
       <Footer />
     </div>
   );

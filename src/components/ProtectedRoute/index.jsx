@@ -4,7 +4,7 @@ import NotPermitted from "./NoPermitted";
 
 const RoleBaseRoute = (props) => {
   const isAdminRoute = window.location.pathname.startsWith("/admin");
-  const isCartRoute = window.location.pathname.startsWith("/cart");
+  const isCartRoute = window.location.pathname.startsWith("/cart");p 
   const isHistoryRoute = window.location.pathname.startsWith("/history");
   const user = useSelector((state) => state.account.user);
   const userRole = user.role;

@@ -1,4 +1,4 @@
-import { FilterTwoTone, ReloadOutlined } from "@ant-design/icons";
+import { FilterTwoTone, HomeOutlined, ReloadOutlined } from "@ant-design/icons";
 import {
   Row,
   Col,
@@ -15,7 +15,7 @@ import {
 import "./home.scss";
 import { useEffect, useState } from "react";
 import { callCategory, fetchBook } from "../../services/UserServices";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 const Home = () => {
   const [form] = Form.useForm();
   const navigate = useNavigate();
@@ -32,6 +32,9 @@ const Home = () => {
   //sort
   const [sortQuery, setSortQuery] = useState("sort=-sold");
 
+  //search
+  const [search, setSearch] = useOutletContext();
+  //handle change filter
   const handleChangeFilter = (changedValues, values) => {
     //console.log(">>> check handleChangeFilter", changedValues, values);
     if (changedValues.category) {
@@ -44,7 +47,7 @@ const Home = () => {
       }
     }
   };
-
+  //onFinish
   const onFinish = (values) => {
     console.log(">>> check values ", values);
     if (values?.range?.from >= 0 && values?.range?.to >= 0) {
@@ -97,7 +100,7 @@ const Home = () => {
   // fetch list book
   useEffect(() => {
     fetchListBook();
-  }, [current, pageSize, filter, sortQuery]);
+  }, [current, pageSize, filter, sortQuery, search]);
 
   const fetchListBook = async () => {
     setLoading(true);
@@ -107,6 +110,9 @@ const Home = () => {
     }
     if (sortQuery) {
       query += `&${sortQuery}`;
+    }
+    if (search) {
+      query += `&mainText=/${search}/i`;
     }
     const res = await fetchBook(query);
     if (res && res.data && res.data.result) {
@@ -179,6 +185,9 @@ const Home = () => {
       className="homepage-container"
       style={{ maxWidth: 1440, margin: "0 auto", padding: "50px 0" }}
     >
+      <div style={{ marginBottom: 12, fontSize: 18 }}>
+        <HomeOutlined /> / Home
+      </div>
       <Row gutter={[20, 20]}>
         <Col md={4} sm={0} xs={0}>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -190,6 +199,7 @@ const Home = () => {
               onClick={() => {
                 form.resetFields();
                 setFilter("");
+                setSearch("");
               }}
             />
           </div>
