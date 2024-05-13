@@ -190,7 +190,12 @@ const Home = () => {
       </div>
 
       <Row gutter={16}>
-        <Col md={4} sm={0} xs={0} style={{ position: "sticky" }}>
+        <Col
+          md={4}
+          sm={0}
+          xs={0}
+          style={{ position: "sticky", position: "-webkit-sticky" }}
+        >
           <div
             style={{
               display: "flex",
