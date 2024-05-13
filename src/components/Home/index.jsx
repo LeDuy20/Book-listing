@@ -183,15 +183,21 @@ const Home = () => {
   return (
     <div
       className="homepage-container"
-      style={{ maxWidth: 1440, margin: "0 auto", padding: "20px 0 "}}
+      style={{ maxWidth: 1440, margin: "0 auto", padding: "20px 0 " }}
     >
       <div style={{ marginBottom: 12, fontSize: 18 }}>
         <HomeOutlined /> / Home
       </div>
 
       <Row gutter={16}>
-        <Col md={4} sm={0} xs={0} >
-          <div style={{ display: "flex", justifyContent: "space-between", margin: "10px 0"}}>
+        <Col md={4} sm={0} xs={0} style={{ position: "sticky" }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              margin: "10px 0",
+            }}
+          >
             <span>
               <FilterTwoTone /> Bộ lọc tìm kiếm
             </span>
@@ -318,7 +324,7 @@ const Home = () => {
             </Form.Item>
           </Form>
         </Col>
-        <Col md={20} xs={24} >
+        <Col md={20} xs={24}>
           <Spin spinning={loading} tip="Loading ...">
             <Row>
               <Tabs
@@ -327,7 +333,7 @@ const Home = () => {
                 onChange={(value) => setSortQuery(value)}
               />
             </Row>
-            <Row className="customize-row" >
+            <Row className="customize-row">
               {listBook.map((item, index) => {
                 return (
                   <div
