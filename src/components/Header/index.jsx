@@ -12,7 +12,8 @@ import { callLogout } from "../../services/UserServices";
 import { doLogoutAction } from "../../redux/account/accountSlice";
 import InfoUser from "../InfoUser/InfoUser";
 
-const Header = () => {
+const Header = (props) => {
+  const { search, setSearch } = props;
   const [openDrawer, setOpenDrawer] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const isAuthenticated = useSelector((state) => state.account.isAuthenticated);
@@ -29,7 +30,10 @@ const Header = () => {
       navigate("/login");
     }
   };
-
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
+  };
+  const deBounceHandleSearch = debounce(handleSearch, 200);
   const items = [
     {
       label: (
@@ -149,6 +153,7 @@ const Header = () => {
                 className="input-search"
                 type={"text"}
                 placeholder="Bạn tìm gì hôm nay"
+                onChange={deBounceHandleSearch}
               />
             </div>
           </div>
@@ -203,10 +208,30 @@ const Header = () => {
         onClose={() => setOpenDrawer(false)}
         open={openDrawer}
       >
-        <p>Quản lý tài khoản</p>
+        <p style={{ cursor: "pointer" }} onClick={() => navigate("/")}>
+          Trang chủ
+        </p>
         <Divider />
+        <div>
+          <p style={{ cursor: "pointer" }} onClick={() => setShowModal(true)}>
+            Quản lý tài khoản
+          </p>
 
-        <p>Đăng xuất</p>
+          <InfoUser setShowModal={setShowModal} showModal={showModal} />
+        </div>
+        <Divider />
+        <p style={{ cursor: "pointer" }} onClick={() => navigate("/history")}>
+          Lịch sử mua hàng
+        </p>
+        <Divider />
+        <p
+          style={{ cursor: "pointer" }}
+          onClick={() => {
+            handleLogout();
+          }}
+        >
+          Đăng xuất
+        </p>
         <Divider />
       </Drawer>
     </>

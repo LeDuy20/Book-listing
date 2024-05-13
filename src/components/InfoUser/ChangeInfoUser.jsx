@@ -113,7 +113,7 @@ const ChangeInfoUser = () => {
         </Col>
         <Col sm={24} md={12}>
           <Form name="basic" onFinish={onFinish} autoComplete="off" form={form}>
-            <Form.Item labelCol={{ span: 24 }} label="Id" name="_id">
+            <Form.Item hidden labelCol={{ span: 24 }} label="Id" name="id">
               <Input />
             </Form.Item>
             <Form.Item

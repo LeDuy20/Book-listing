@@ -23,14 +23,15 @@ import ListBook from "./components/AdminLayout/Book/ListBook";
 import ManageOder from "./components/AdminLayout/User/ManageOder";
 import Dashboard from "./components/AdminLayout/User/Dashboard";
 
-
 const Layout = () => {
   //search
-  const [search , setSearch] = useState("")
+  const [search, setSearch] = useState("");
   return (
     <div className="layout-app">
-      <Header search={search} setSearch={setSearch}/>
-      <Outlet context={[search, setSearch]}/>
+      <Header search={search} setSearch={setSearch} />
+      <div className="container">
+        <Outlet context={[search, setSearch]} />
+      </div>
       <Footer />
     </div>
   );

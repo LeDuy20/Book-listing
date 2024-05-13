@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../../pages/Carts/Carts.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { Col, Divider, InputNumber, Row, Steps, Empty } from "antd";
-import { DeleteOutlined } from "@ant-design/icons";
+import { DeleteOutlined, HomeOutlined } from "@ant-design/icons";
 import {
   doUpdateCartAction,
   doDeteleCartAction,
