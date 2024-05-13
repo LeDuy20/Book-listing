@@ -30,10 +30,10 @@ const Header = (props) => {
       navigate("/login");
     }
   };
-  const handleSearch = (e) => {
-    setSearch(e.target.value);
-  };
-  const deBounceHandleSearch = debounce(handleSearch, 200);
+  // const handleSearch = (e) => {
+  //   setSearch(e.target.value);
+  // };
+  // const deBounceHandleSearch = debounce(handleSearch, 200);
   const items = [
     {
       label: (
@@ -153,7 +153,7 @@ const Header = (props) => {
                 className="input-search"
                 type={"text"}
                 placeholder="Bạn tìm gì hôm nay"
-                onChange={deBounceHandleSearch}
+                onChange={(e) => setSearch(e.target.value)}
               />
             </div>
           </div>
