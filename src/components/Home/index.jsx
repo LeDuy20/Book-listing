@@ -194,7 +194,7 @@ const Home = () => {
           md={4}
           sm={0}
           xs={0}
-          style={{ position: "sticky", position: "-webkit-sticky" }}
+          style={{ position: "sticky", position: "-webkit-sticky", top: 0 }}
         >
           <div
             style={{
